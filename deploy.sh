@@ -1,3 +1,4 @@
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 docker buid -t gorbar/multi-client ./client
 docker buid -t gorbar/multi-server ./server
 docker buid -t gorbar/multi-worker ./worker
