@@ -20,6 +20,9 @@ script:
     - docker run -e CI=true gorbar/react-test npm run test
 deploy:
     provider: script
-    script: bash ./deploy.sh
+    script: 
+        - bash ./deploy.sh
+        - docker buid -t gorbar/multi-client ./client
+        - docker push gorbar/multi-client
     on:
         branch: master
