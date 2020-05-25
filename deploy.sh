@@ -1,13 +1,9 @@
-echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-docker buid -t gorbar/multi-client ./client
-docker buid -t gorbar/multi-server ./server
-docker buid -t gorbar/multi-worker ./worker
-docker buid -t gorbar/multi-client:$SHA ./client
-docker buid -t gorbar/multi-server:$SHA ./server
-docker buid -t gorbar/multi-worker:$SHA ./worker
-docker push gorbar/multi-client
-docker push gorbar/multi-server
-docker push gorbar/multi-worker
+docker build -t gorbar/multi-client:latest -t gorbar/multi-client:$SHA -f ./client/Dockerfile ./client
+docker build -t gorbar/multi-server:latest -t gorbar/multi-server:$SHA -f ./server/Dockerfile ./server
+docker build -t gorbar/multi-worker:latest -t gorbar/multi-worker:$SHA -f ./worker/Dockerfile ./worker
+docker push gorbar/multi-client:latest
+docker push gorbar/multi-server:latest
+docker push gorbar/multi-worker:latest
 docker push gorbar/multi-client:$SHA
 docker push gorbar/multi-server:$SHA
 docker push gorbar/multi-worker:$SHA
